@@ -1,0 +1,36 @@
+When(/^I enter the details in the page as "(.*?)"$/) do |arg1|
+@driver.find_element(:id, "tsk5").clear
+@driver.find_element(:id, "tsk5").send_keys 'admin'
+
+@driver.find_element(:id, "tsk4").clear
+@driver.find_element(:id, "tsk4").send_keys "5/3/2014"
+
+@driver.find_element(:xpath, ".//*[@id='whobtn']/img").click
+
+ #parentWindow = @driver.window_handle
+ #dri = @driver.window_handles
+#raise dri
+
+
+ #Get the main window handle
+    main = @driver.window_handles.first
+
+    #Get the popup window handle
+    popup = @driver.window_handles.last
+
+    #Then switch control between the windows
+
+@driver.switch_to.window(popup)
+sleep 3
+
+
+@driver.switch_to.frame "resultsFrame"
+@driver.find_element(:link, "Siva Vittala").click
+#name = "Rama rao Krishna"
+#driver.find_element(:xpath, "//table[@class='list']/tbody/tr[2]/th/a").click
+#sleep 3
+
+@driver.browser.switch_to.window(main)
+    @driver.find_element(:name, "save").click
+
+end
